@@ -1,46 +1,24 @@
-import io.github.cdimascio.dotenv.Dotenv;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
-import net.dv8tion.jda.api.sharding.ShardManager;
-import net.dv8tion.jda.api.utils.ChunkingFilter;
-import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 import javax.security.auth.login.LoginException;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Bot {
-    private final ShardManager shardManager;
-    private final Dotenv config;
+    static String prefix = "!";
 
-    // Using ShardManager so our  bot can be used by more than one user
-    public Bot() throws LoginException {
-        config = Dotenv.configure().load();
-        String token = config.get("TOKEN");
-        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
+    public static void main(String[] args) throws LoginException, IOException {
+
+        JDABuilder builder = new JDABuilder(AccountType.BOT);
+        String token = new String(Files.readAllBytes(Paths.get("token.txt")));
+        builder.setToken(token);
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.setActivity(Activity.playing("Sokoban"));
-        builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT);
-        builder.setMemberCachePolicy(MemberCachePolicy.ALL);
-        builder.setChunkingFilter(ChunkingFilter.ALL);
-
-        shardManager = builder.build();
-
-
-    }
-
-    public Dotenv getConfig() {
-        return config;
-    }
-
-
-    public static void main(String[] args) {
-        try {
-            Bot bot = new Bot();
-        } catch (LoginException e) {
-            System.out.println("Login token invalid");
-        }
-
+        builder.setActivity(Activity.playing("!play to play Sokoban!"));
+        builder.addEventListeners(new Commands());
+        builder.build();
     }
 }
