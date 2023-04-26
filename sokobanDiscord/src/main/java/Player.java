@@ -23,7 +23,7 @@ public class Player
         this.x = x;
         this.y = y;
     }
-    public boolean moveUp()
+    public void moveUp()
     {
         if (!currentGrid.isWall(x, y - 1))
         {
@@ -32,16 +32,14 @@ public class Player
                 if (currentGrid.getBox(x, y - 1).moveUp())
                 {
                     y -= 1;
-                    return true;
+                    return;
                 }
-                return false;
+                return;
             }
             y -= 1;
-            return true;
         }
-        return false;
     }
-    public boolean moveDown()
+    public void moveDown()
     {
         if (!currentGrid.isWall(x, y + 1))
         {
@@ -50,16 +48,14 @@ public class Player
                 if (currentGrid.getBox(x, y + 1).moveDown())
                 {
                     y += 1;
-                    return true;
+                    return;
                 }
-                return false;
+                return;
             }
             y += 1;
-            return true;
         }
-        return false;
     }
-    public boolean moveLeft()
+    public void moveLeft()
     {
         if (!currentGrid.isWall(x - 1, y))
         {
@@ -68,16 +64,14 @@ public class Player
                 if (currentGrid.getBox(x - 1, y).moveLeft())
                 {
                     x -= 1;
-                    return true;
+                    return;
                 }
-                return false;
+                return;
             }
             x -= 1;
-            return true;
         }
-        return false;
     }
-    public boolean moveRight()
+    public void moveRight()
     {
         if (!currentGrid.isWall(x + 1, y))
         {
@@ -86,14 +80,12 @@ public class Player
                 if (currentGrid.getBox(x + 1, y).moveRight())
                 {
                     x += 1;
-                    return true;
+                    return;
                 }
-                return false;
+                return;
             }
             x += 1;
-            return true;
         }
-        return false;
     }
 
 }

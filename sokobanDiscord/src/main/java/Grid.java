@@ -91,17 +91,17 @@ public class Grid
     }
     public void createBoxes()
     {
-        color = rand.nextInt(6); //runs after each level
+        color = Randomizer.nextInt(6); //runs after each level
         for (int i = 0; i < boxCount; i++)
         {
-            int x = rand.nextInt(width - 4) + 2;
-            int y = rand.nextInt(height - 4) + 2;
+            int x = Randomizer.nextInt(width - 4) + 2;
+            int y = Randomizer.nextInt(height - 4) + 2;
             for (int j = 0; j < i; j++)
             {
                 while ((x == boxes[j].getX() && y == boxes[j].getY()) || (x == 2 && y == 2))
                 {
-                    x = rand.nextInt(width - 4) + 2;
-                    y = rand.nextInt(height - 4) + 2;
+                    x = Randomizer.nextInt(width - 4) + 2;
+                    y = Randomizer.nextInt(height - 4) + 2;
                 }
             }
             boxes[i] = new Box(x, y, this);
@@ -111,14 +111,14 @@ public class Grid
     {
         for (int i = 0; i < boxCount; i++)
         {
-            int x = rand.nextInt(width - 2) + 1;
-            int y = rand.nextInt(height - 2) + 1;
+            int x = Randomizer.nextInt(width - 2) + 1;
+            int y = Randomizer.nextInt(height - 2) + 1;
             for (int j = 0; j < i; j++)
             {
                 while (((x == destinations[j].getX() && y == destinations[j].getY())) || isBoxRaw(x, y))
                 {
-                    x = rand.nextInt(width - 2) + 1;
-                    y = rand.nextInt(height - 2) + 1;
+                    x = Randomizer.nextInt(width - 2) + 1;
+                    y = Randomizer.nextInt(height - 2) + 1;
                 }
             }
             destinations[i] = new Destination(x, y, this);
@@ -200,16 +200,16 @@ public class Grid
     public String toString()
     {
         updateGrid();
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
-                result += grid[j][i];
+                result.append(grid[j][i]);
             }
-            result += "\n";
+            result.append("\n");
         }
-        return result;
+        return result.toString();
     }
 
 }

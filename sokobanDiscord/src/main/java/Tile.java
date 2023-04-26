@@ -1,6 +1,6 @@
-public class Tile {
 
-    //CSS box style
+public class Tile
+{
     final int GROUND = 0;
     final int WALL = 1;
     final int BOX = 2;
@@ -8,42 +8,37 @@ public class Tile {
     final int PLAYER = 4;
     int color = 0;
     int status = 0;
-
-    //Adding constructors
-    public Tile(int status) {
+    public Tile(int status)
+    {
         this.status = status;
     }
-
-    public Tile(int status, int color) {
-        this.status = status;
-        this.color = color;
-    }
-
-    //Setters
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    //can set color from here
-    public void setStatus(int status, int color) {
+    public Tile(int status, int color)
+    {
         this.status = status;
         this.color = color;
     }
-
-    //getters here
-    public int getStatus() {
+    public void setStatus(int status)
+    {
+        this.status = status;
+    }
+    public void setStatus(int status, int color)
+    {
+        this.status = status;
+        this.color = color;
+    }
+    public int getStatus()
+    {
         return this.status;
     }
-    //to String method
-
-
-    @Override
-    public String toString() {
-        if(status==GROUND){
-            return ":black_small_square"; //discord emoji
+    public String toString()
+    {
+        if (status == GROUND)
+        {
+            return ":black_large_square:";
         }
-        if(status==WALL){
-            switch(color){
+        if (status == WALL)
+        {
+            switch (color) {
                 case 0:
                     return ":red_square:";
                 case 1:
@@ -64,8 +59,8 @@ public class Tile {
         }
         if (status == DESTINATION)
         {
-            return ":negative_squared_cross_mark:";
+            return ":smiling_face_with_tear: ";
         }
-        return ":weary";
+        return ":sob:";
     }
 }

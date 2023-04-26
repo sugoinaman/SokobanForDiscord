@@ -25,7 +25,7 @@ public class Bot {
         JDABuilder builder = new JDABuilder(AccountType.BOT);
         builder.setToken(token);
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.setActivity(Activity.playing("!play to play Sokoban!"));
+        builder.setActivity(Activity.playing("!play sokoban"));
         builder.addEventListeners(new Commands());
         builder.build();
     }

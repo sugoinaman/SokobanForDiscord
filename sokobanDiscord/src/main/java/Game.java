@@ -51,7 +51,7 @@ public class Game {
                 {
                     grid.reset();
                 }
-                if (!grid.hasWon()) { //need to check again
+                if (!grid.hasWon()) {
                     Commands.sendGameEmbed(channel, String.valueOf(level), grid.toString());
                 }
             }
